@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Main Page</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<button class="tablink" onclick="openPage('Display', this, '#ccc')" id="defaultOpen">Display</button>
+<button class="tablink" onclick="openPage('SendNew', this, '#ccc')">Post</button>
+<button class="tablink" onclick="openPage('Update', this, '#ccc')">Update</button>
+<button class="tablink" onclick="openPage('Delete', this, '#ccc')">Delete</button>
+
+<div id="Display" class="tabcontent">
+  <h2>Select Record</h2>
+  <div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="optradio" onclick="selectuser()">User Records
+  </label>
+</div>
+<div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="optradio" onclick="selectbook()">Book Records
+  </label>
+</div>
+<div class="form-check-inline">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="optradio" onclick="selectissue()">Issue Records
+  </label>
+</div><hr>
+  <div id="user">
+    <h3>Display All Users</h3>
+      <button onclick="showallusers()" class="btn btn-info">SHOW</button>
+      <div id="Usersdisplay"></div><hr>
+      <h3>Display User By Id</h3>
+      <form class="form-group">
+        <label>Enter User-Id:</label>
+        <input type="number" name="userid" id="user_id" class="form-control">
+      </form>
+      <button onclick="getUserById()" class="btn btn-info">SHOW</button>
+      <div id="Userdisplay"></div>
+  </div>
+  <div id="book">
+    <h3>Display All Books</h3>
+      <button onclick="showallbooks()" class="btn btn-info">SHOW</button>
+      <div id="Booksdisplay"></div><hr>
+      <h3>Display Book By Name</h3>
+      <form class="form-group">
+        <label>Enter Book-Name:</label>
+        <input type="text" name="bookname" id="book_name" class="form-control">
+      </form>
+      <button onclick="getBookById()" class="btn btn-info">SHOW</button>
+      <div id="Bookdisplay"></div>
+  </div>
+  <div id="issue">
+    <h3>Display All Issue-Records</h3>
+      <button onclick="showallissues()" class="btn btn-info">SHOW</button>
+      <div id="Issuesdisplay"></div><hr>
+      <h3>Display Issue-Record By Id</h3>
+      <form class="form-group">
+        <label>Enter Issue-Id:</label>
+        <input type="number" name="issueid" id="issue_id" class="form-control">
+      </form>
+      <button onclick="getIssueById()" class="btn btn-info">SHOW</button>
+      <div id="Issuedisplay"></div>
+  </div>
+</div>
+
+<div id="SendNew" class="tabcontent">
+  <h2>Select Record</h2>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" onclick="selectuserpost()">User Records
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" onclick="selectbookpost()">Book Records
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" onclick="selectissuepost()">Issue Records
+    </label>
+  </div><hr>
+    <div class="container" id="userpost">
+      <form>
+        <div class="row">
+          <div class="col-25">
+            <label for="firstname">Firstname</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="fname-post" name="firstname" placeholder="Enter First-Name....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="lastname">Lastname</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="lname-post" name="lastname" placeholder="Enter Last-Name....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="email">E-Mail Id</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="email-post" name="email" placeholder="Enter your email-id....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="password">Password</label>
+          </div>
+          <div class="col-75">
+            <input type="password" id="password-post" name="password">
+          </div>
+        </div>
+        <div class="row">
+        </div>
+      </form>
+      <button onclick="postuser()" class="btn btn-success">POST</button>
+    </div>
+
+    <div class="container" id="bookpost">
+      <form>
+        <div class="row">
+          <div class="col-25">
+            <label for="bookname">Bookname</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="bname-post-book" name="bookname" placeholder="Enter Book Name....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="publication">Publication</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="publication-post-book" name="publication" placeholder="Enter Publication">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="author">Author</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="author-post-book" name="author" placeholder="Enter Author....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="edition">Edition</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="edition-post-book" name="edition" placeholder="Enter Edition....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="qauntity">Quantity</label>
+          </div>
+          <div class="col-75">
+            <input type="number" id="qty-post" name="qauntity" placeholder="Enter Quantity....">
+          </div>
+        </div>
+        <div class="row">
+        </div>
+      </form>
+      <button onclick="postbook()" class="btn btn-success">POST</button>
+    </div>
+
+    <div class="container" id="issuepost">
+      <form>
+        <div class="row">
+          <div class="col-25">
+            <label for="bookname">Bookname</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="bname-post-issue" name="bookname" placeholder="Enter Book Name....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="bookN">Book Number</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="bookN" name="bookN" placeholder="Enter Book-Number">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="publication">Publication</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="publication-post-issue" name="publication" placeholder="Enter Publication">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="author">Author</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="author-post-issue" name="author" placeholder="Enter Author">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="edition">Edition</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="edition-post-issue" name="edition" placeholder="Enter Edition">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="status">Status</label>
+          </div>
+          <div class="col-75">
+            <select id="status-post" name="status">
+              <option value="ISSUED">ISSUED</option>
+              <option value="AVAILABLE">AVAILABLE</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+        </div>
+      </form>
+      <button onclick="postissue()" class="btn btn-success">POST</button>
+    </div>
+</div>
+
+<div id="Update" class="tabcontent">
+  <h2>Select Record</h2>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" onclick="selectuserupdate()">User Records
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" onclick="selectbookupdate()">Book Records
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" onclick="selectissueupdate()">Issue Records
+    </label>
+  </div><hr>
+    <div class="container" id="userupdate">
+      <form>
+        <div class="row">
+          <div class="col-25">
+            <label for="userid">User-Id</label>
+          </div>
+          <div class="col-75">
+            <input type="number" id="updateuser-id" name="userid" placeholder="Enter User-Id...." min="1">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="firstname">Firstname</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="fname-update" name="firstname" placeholder="Enter First-Name....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="lastname">Lastname</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="lname-update" name="lastname" placeholder="Enter Last-Name....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="email">E-Mail Id</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="email-update" name="email" placeholder="Enter your email-id....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="password">Password</label>
+          </div>
+          <div class="col-75">
+            <input type="password" id="password-update" name="password">
+          </div>
+        </div>
+        <div class="row">
+        </div>
+      </form>
+      <button onclick="updateuser()" class="btn btn-success">UPDATE</button>
+    </div>
+
+    <div class="container" id="bookupdate">
+      <form>
+        <div class="row">
+          <div class="col-25">
+            <label for="bookname">Bookname</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="bname-update-book" name="bookname" placeholder="Enter Book Name....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="publication">Publication</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="publication-update-book" name="publication" placeholder="Enter Publication">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="author">Author</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="author-update-book" name="author" placeholder="Enter Author....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="edition">Edition</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="edition-update-book" name="edition" placeholder="Enter Edition....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="qauntity">Quantity</label>
+          </div>
+          <div class="col-75">
+            <input type="number" id="qty-update" name="qauntity" placeholder="Enter Quantity....">
+          </div>
+        </div>
+        <div class="row">
+        </div>
+      </form>
+      <button onclick="updatebook()" class="btn btn-success">UPDATE</button>
+    </div>
+
+    <div class="container" id="issueupdate">
+      <form>
+        <div class="row">
+          <div class="col-25">
+            <label for="issueid">Issue-Id</label>
+          </div>
+          <div class="col-75">
+            <input type="number" id="updateissueid" name="issueid" placeholder="Enter Issue-Id....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="bookname">Bookname</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="bname-update-issue" name="bookname" placeholder="Enter Book Name....">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="bookN">Book Number</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="bookN-update" name="bookN" placeholder="Enter Book-Number">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="publication">Publication</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="publication-update-issue" name="publication" placeholder="Enter Publication">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="author">Author</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="author-update-issue" name="author" placeholder="Enter Author">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="edition">Edition</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="edition-update-issue" name="edition" placeholder="Enter Edition">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="status">Status</label>
+          </div>
+          <div class="col-75">
+            <select id="status-update" name="status">
+              <option value="ISSUED">ISSUED</option>
+              <option value="AVAILABLE">AVAILABLE</option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+        </div>
+      </form>
+      <button onclick="updateissue()" class="btn btn-success">UPDATE</button>
+    </div>
+</div>
+
+<div id="Delete" class="tabcontent">
+  <h2>Select Record</h2>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" onclick="selectuserdelete()" >User Records
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" onclick="selectbookdelete()">Book Records
+    </label>
+  </div>
+  <div class="form-check-inline">
+    <label class="form-check-label">
+      <input type="radio" class="form-check-input" name="optradio" onclick="selectissuedelete()">Issue Records
+    </label>
+  </div><hr>
+  <div id="userdelete">
+    <h3>Delete User By Id</h3>
+      <form class="form-group">
+        <label>Enter User-Id:</label>
+        <input type="number" name="userid" id="user_id_del" class="form-control">
+      </form>
+      <button onclick="deleteuser()" class="btn btn-success">DELETE</button>
+      <div id="UserByIdDel"></div>
+  </div>
+  <div id="bookdelete">
+    <h3>Delete Book By Name</h3>
+      <form class="form-group">
+        <label>Enter Book-Name:</label>
+        <input type="text" name="bookname" id="bookname_del" class="form-control">
+      </form>
+      <button onclick="deletebook()" class="btn btn-success">DELETE</button>
+      <div id="BookByIdDel"></div>
+  </div>
+  <div id="issuedelete">
+    <h3>Delete Issue By Id</h3>
+      <form class="form-group">
+        <label>Enter Issue-Id:</label>
+        <input type="number" name="issueid" id="issue_id_del" class="form-control">
+      </form>
+      <button onclick="deleteissue()" class="btn btn-success">DELETE</button>
+      <div id="IssueByIdDel"></div>
+  </div>    
+</div>
+<script src="script.js"></script>
+</body>
+</html> 
